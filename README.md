@@ -1,4 +1,7 @@
 # CollarDownloadeR
+
+_Given that we are working on the new collar package we are going to rename this package to collarfetchr for consistency and searchability.  Phasing out this package is in name only.  The package will continue to focus on all data reading capabilities required when working with collar data.  The new package can be found at https://github.com/Huh/collarfetchr_
+
 A package to retrieve collar data from manufacturer's websites
 
 This is very much a work in progress, but is being used by some collaborators.
@@ -7,6 +10,7 @@ This is very much a work in progress, but is being used by some collaborators.
 - [ATS](https://atstrack.com/)
 - [Cell Track Tech](https://www.celltracktech.com/)
 - [Vectronics](https://www.vectronic-aerospace.com/)
+
 While the framework is in place to call the Vectronics API, the API is perhaps
 not ready for production use.  I am in touch with the developers at Vectronics 
 and will update this site as new information becomes available.
@@ -56,3 +60,9 @@ url <- cdr_build_vec_urls(
 my_data <- cdr_call_vec_api(url)
 
 ```
+
+## Future
+
+- I imagine implementing custom and general CRUD like operations for databases (because that is where our data should live, right?)
+- Some code will be refactored to up consistency with other functions and packages in the collar family
+
