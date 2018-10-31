@@ -39,38 +39,29 @@ The two least intuitive parameters allow the user to only download data after so
 
 ```R
 #  Get collar IDs - fake directory inserted to show call
-ids <- cdr_get_id_from_key("C:/Temp/vec_keys")
-
-#  Get collar keys
-keys <- cdr_get_keys("C:/Temp/vec_keys")
-
-#  Build url from base url, collar IDs, collar keys and data type
-url <- cdr_build_vec_urls(
- base_url = NULL,
- collar_id = ids,
- collar_key = keys,
- type = "act"
-)
-
-# Call API - This will not work without a valid key and collar id
-my_data <- cdr_call_vec_api(url)
-
-#  Get collar IDs - fake directory inserted to show call
 data_dir <- "C:/Temp/vec_keys"
 
+#  Extract ID by parsing the key
 ids <- cdr_get_id_from_key(data_dir)
-> keys <- cdr_get_keys(data_dir)
-> length(ids)
-[1] 7
-> length(keys)
+
+length(ids)
 [1] 7
 
+keys <- cdr_get_keys(data_dir)
+
+length(keys)
+[1] 7
+```
+
+Dipping our toe in the pool, create the url and call the API for a single combination of values first.
+
+```R
 #  Get GPS data from one collar after January 01, 2017
 id <- ids[1]
 key <- keys[1]
 
 #  By date
-url_1 <- cdr_build_vec_url(
+url_dt <- cdr_build_vec_url(
   base_url = NULL,
   collar_id = id,
   collar_key = key,
@@ -79,18 +70,8 @@ url_1 <- cdr_build_vec_url(
   start_date = "2017-01-01T00:00:00"
 )
 
-#  Get data from the same collar after data ID 63091567
-url_2 <- cdr_build_vec_url(
-  base_url = NULL,
-  collar_id = id,
-  collar_key = key,
-  type = "gps",
-  after_data_id = 63091567,
-  start_date = NULL
-)
-
 #  Call the api for the single url built using date
-gps_dat_1 <- cdr_call_vec_api(url_1)
+gps_dat_1 <- cdr_call_vec_api(url_dt)
 
 gps_dat_1 %>% dplyr::slice(1:2)
 # A tibble: 2 x 46
@@ -102,9 +83,23 @@ gps_dat_1 %>% dplyr::slice(1:2)
 #   ch05SatCnr <lgl>, ch06SatId <lgl>, ch06SatCnr <lgl>, ch07SatId <lgl>, ch07SatCnr <lgl>, ch08SatId <lgl>, ch08SatCnr <lgl>, ch09SatId <lgl>, ch09SatCnr <lgl>,
 #   ch10SatId <lgl>, ch10SatCnr <lgl>, ch11SatId <lgl>, ch11SatCnr <lgl>, ch12SatId <lgl>, ch12SatCnr <lgl>, idMortalityStatus <int>, activity <int>,
 #   mainVoltage <dbl>, backupVoltage <dbl>, temperature <dbl>, transformedX <lgl>, transformedY <lgl>
+```
+
+In the first example we passed a date and said give me all the data after "2017-01-01T00:00:00", but it may also be useful to pass the data ID and ask for all data after that ID.  This next example requests data for a single collar using data ID.
+
+```R
+#  Get data from the same collar after data ID 63091567
+url_did <- cdr_build_vec_url(
+  base_url = NULL,
+  collar_id = id,
+  collar_key = key,
+  type = "gps",
+  after_data_id = 63091567,
+  start_date = NULL
+)
 
 #  Call the api for the single url built using data ID
-gps_dat_2 <- cdr_call_vec_api(url_1)
+gps_dat_2 <- cdr_call_vec_api(url_did)
 
 gps_dat_2 %>% dplyr::slice(1:2)
 # A tibble: 2 x 46
@@ -116,9 +111,13 @@ gps_dat_2 %>% dplyr::slice(1:2)
 #   ch05SatCnr <lgl>, ch06SatId <lgl>, ch06SatCnr <lgl>, ch07SatId <lgl>, ch07SatCnr <lgl>, ch08SatId <lgl>, ch08SatCnr <lgl>, ch09SatId <lgl>, ch09SatCnr <lgl>,
 #   ch10SatId <lgl>, ch10SatCnr <lgl>, ch11SatId <lgl>, ch11SatCnr <lgl>, ch12SatId <lgl>, ch12SatCnr <lgl>, idMortalityStatus <int>, activity <int>,
 #   mainVoltage <dbl>, backupVoltage <dbl>, temperature <dbl>, transformedX <lgl>, transformedY <lgl>
+```
 
+The first two examples showed how we might create urls and call the API for a single collar, but in reality we probably want to retrieve data for many animals at the same time.
+
+```R
 ## For real applications we probably want to download many collars each day, week, month...
-#  Call multiple collars
+#  Call multiple collars and request all position data after "2018-08-01T00:00:00"
 
 urls <- cdr_build_vec_urls(
   base_url = NULL,
