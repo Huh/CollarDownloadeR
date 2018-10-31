@@ -11,10 +11,6 @@ This is very much a work in progress, but is being used by some collaborators.
 - [Cell Track Tech](https://www.celltracktech.com/)
 - [Vectronics](https://www.vectronic-aerospace.com/)
 
-While the framework is in place to call the Vectronics API, the API is perhaps
-not ready for production use.  I am in touch with the developers at Vectronics 
-and will update this site as new information becomes available.
-
 ### In Progress
 - [Lotek](http://www.lotek.com/)
 At this time the Lotek website represents a significant undertaking to web 
