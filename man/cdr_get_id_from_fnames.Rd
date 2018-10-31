@@ -2,9 +2,12 @@
 % Please edit documentation in R/get_ids.R
 \name{cdr_get_id_from_fnames}
 \alias{cdr_get_id_from_fnames}
+\alias{cdr_get_id_from_key}
 \title{Extract the collar ID from either key filenames or the actual key XML}
 \usage{
 cdr_get_id_from_fnames(key_dir, ...)
+
+cdr_get_id_from_key(key_dir)
 }
 \arguments{
 \item{key_dir}{A length 1 character string describing the path to the directory (on your machine) that houses key files}

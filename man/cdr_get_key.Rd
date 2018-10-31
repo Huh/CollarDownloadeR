@@ -2,9 +2,12 @@
 % Please edit documentation in R/get_keys.R
 \name{cdr_get_key}
 \alias{cdr_get_key}
+\alias{cdr_get_keys}
 \title{Retrieve keys from a path to a key file or read all keys contained within a directory}
 \usage{
 cdr_get_key(key_path)
+
+cdr_get_keys(key_dir)
 }
 \arguments{
 \item{key_path}{A length 1 character string describing the full path to a single key file.}

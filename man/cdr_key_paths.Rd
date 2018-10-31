@@ -9,7 +9,7 @@ cdr_key_paths(key_dir, ext = "keyx")
 \arguments{
 \item{key_dir}{A length 1 character string describing the path to the directory (on your machine) that houses key files}
 
-\item{ext}{A length 1 character string that is interpretable as a regular expression. Defaults to keyx, which should be correct}
+\item{ext}{A length 1 character string that is interpretable as a regular expression. Defaults to keyx, which should be correct for key files, but could be used to list files of any type by modifying ext argument.}
 }
 \value{
 A character vector with a path for each file in key_dir
