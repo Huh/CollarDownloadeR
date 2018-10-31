@@ -30,6 +30,9 @@ cdr_get_id_from_fnames <- function(key_dir, ...) {
   gsub("(.*Collar)([0-9]+)(_.*)", "\\2", paths)
 }
 
+#' @rdname cdr_get_id_from_fnames
+#' @export
+
 cdr_get_id_from_key <- function(key_dir) {
   assertthat::assert_that(assertthat::is.dir(key_dir))
   assertthat::assert_that(assertthat::is.readable(key_dir))
