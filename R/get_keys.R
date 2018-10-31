@@ -45,6 +45,9 @@ cdr_get_key <- function(key_path) {
     xml2::xml_text()
 }
 
+#' @rdname cdr_get_key
+#' @export
+
 cdr_get_keys <- function(key_dir) {
   assertthat::assert_that(assertthat::is.dir(key_dir))
   assertthat::assert_that(assertthat::is.readable(key_dir))
