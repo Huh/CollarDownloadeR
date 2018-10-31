@@ -26,9 +26,18 @@
 #' #cdr_call_vec_api(url)
 cdr_call_vec_api <- function(url) {
 
-  purrr::map_df(
+  resp <- purrr::map(
     url,
-    ~ httr::GET(.x) %>%
-      httr::content()
+    ~ httr::GET(.x)
   )
+
+  parse <- purrr::map_df(
+    resp,
+    ~ jsonlite::fromJSON(
+        httr::content(.x, "text"),
+        simplifyVector = TRUE
+      )
+  ) %>%
+  tibble::as.tibble(.)
+
 }
