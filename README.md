@@ -6,6 +6,13 @@ A package to retrieve collar data from manufacturer's websites
 
 This is very much a work in progress, but is being used by some collaborators.
 
+### Installation
+```R
+# Install the development version from GitHub
+# install.packages("devtools")
+devtools::install_github("Huh/CollarDownloadeR")
+```
+
 ### Companies
 - [ATS](https://atstrack.com/)
 - [Cell Track Tech](https://www.celltracktech.com/)
