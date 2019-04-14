@@ -1,6 +1,6 @@
 # CollarDownloadeR
 
-_Given that we are working on the new collar package we are going to rename this package to collarfetchr for consistency and searchability.  Phasing out this package is in name only.  The package will continue to focus on all data reading capabilities required when working with collar data.  The new package can be found at https://github.com/Huh/collarfetchr_
+_Given that we are working on the new collar package we are going to rename this package to collar for consistency and searchability.  Phasing out this package is in name only.  The package will continue to focus on all data reading capabilities required when working with collar data.  The new package can be found at https://github.com/Huh/collar_
 
 A package to retrieve collar data from manufacturer's websites
 
